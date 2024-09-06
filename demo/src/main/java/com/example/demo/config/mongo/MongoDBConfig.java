@@ -13,9 +13,12 @@ public class MongoDBConfig {
     @Value("${mongo.connectionString}")
     private String connectionString;
 
+    @Value("${mongo.database}")
+    private String database;
+
     @Bean
     public MongoDatabaseFactory mongoConfigure(){
-        return new SimpleMongoClientDatabaseFactory(connectionString);
+        return new SimpleMongoClientDatabaseFactory(connectionString+database+"?authSource=admin");
     }
 
     @Bean
